@@ -20,8 +20,12 @@ class CassandraSimpleLiveTest {
     private static final String KEYSPACE_NAME = "test";
 
     @Container
-    private static final CassandraContainer cassandra = (CassandraContainer) new CassandraContainer("cassandra:3.11.2")
-      .withExposedPorts(9042);
+    private static final CassandraContainer cassandra = (CassandraContainer) new CassandraContainer("cassandra:4.0.5")
+            .withExposedPorts(9042)
+            .withEnv("HEAP_NEWSIZE", "128M")
+            .withEnv("MAX_HEAP_SIZE", "1024M")
+            .withEnv("JVM_OPTS", "-Dcassandra.skip_wait_for_gossip_to_settle=0 -Dcassandra.initial_token=0")
+            .withEnv("CASSANDRA_SNITCH", "GossipingPropertyFileSnitch");
 
     @BeforeAll
     static void setupCassandraConnectionProperties() {
