@@ -41,7 +41,9 @@ class CassandraSimpleLiveTest {
 
     @Test
     void givenCassandraContainer_whenSpringContextIsBootstrapped_thenContainerIsRunningWithNoExceptions() {
+        System.out.println("before asserting");
         assertThat(cassandra.isRunning()).isTrue();
+        System.out.println("after asserting");
     }
 
 }

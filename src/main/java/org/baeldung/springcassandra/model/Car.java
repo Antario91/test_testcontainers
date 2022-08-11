@@ -1,5 +1,6 @@
 package org.baeldung.springcassandra.model;
 
+import lombok.ToString;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
@@ -7,6 +8,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Table
+@ToString
 public class Car {
 
     @PrimaryKey

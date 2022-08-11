@@ -71,6 +71,7 @@ class CassandraNestedLiveTest {
             carRepository.save(newCar);
 
             List<Car> savedCars = carRepository.findAllById(List.of(carId));
+            System.out.println("QWE Test1: savedCars" + savedCars);
             assertThat(savedCars.get(0)).isEqualTo(newCar);
         }
 
@@ -83,6 +84,7 @@ class CassandraNestedLiveTest {
             carRepository.save(existingCar);
 
             List<Car> savedCars = carRepository.findAllById(List.of(carId));
+            System.out.println("QWE Test2: savedCars" + savedCars);
             assertThat(savedCars.get(0).getModel()).isEqualTo("X-Trail");
         }
 
@@ -94,6 +96,7 @@ class CassandraNestedLiveTest {
             carRepository.delete(existingCar);
 
             List<Car> savedCars = carRepository.findAllById(List.of(carId));
+            System.out.println("QWE Test3: savedCars" + savedCars);
             assertThat(savedCars.isEmpty()).isTrue();
         }
 
