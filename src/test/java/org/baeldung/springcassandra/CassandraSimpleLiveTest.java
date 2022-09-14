@@ -37,10 +37,9 @@ class CassandraSimpleLiveTest {
     }
 
     static void createKeyspace(Cluster cluster) {
-        try(Session session = cluster.connect()) {
-            session.execute("CREATE KEYSPACE IF NOT EXISTS " + KEYSPACE_NAME + " WITH replication = \n" +
-              "{'class':'SimpleStrategy','replication_factor':'1'};");
-        }
+        Session session = cluster.connect();
+        session.execute("CREATE KEYSPACE IF NOT EXISTS " + KEYSPACE_NAME + " WITH replication = \n" +
+                "{'class':'SimpleStrategy','replication_factor':'1'};");
     }
 
     @Test
