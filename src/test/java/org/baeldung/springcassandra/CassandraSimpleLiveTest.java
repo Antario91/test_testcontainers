@@ -13,13 +13,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 // This live test needs a running Docker instance so that a Cassandra container can be created
 
-@Testcontainers
-@SpringBootTest
+//@Testcontainers
+//@SpringBootTest
 class CassandraSimpleLiveTest {
 
     private static final String KEYSPACE_NAME = "test";
 
-    @Container
+//    @Container
     private static final CassandraContainer cassandra = (CassandraContainer) new CassandraContainer("cassandra:4.0.5")
             .withExposedPorts(9042)
             .withEnv("HEAP_NEWSIZE", "128M")
@@ -27,7 +27,7 @@ class CassandraSimpleLiveTest {
             .withEnv("JVM_OPTS", "-Dcassandra.skip_wait_for_gossip_to_settle=0 -Dcassandra.initial_token=0")
             .withEnv("CASSANDRA_SNITCH", "GossipingPropertyFileSnitch");
 
-    @BeforeAll
+//    @BeforeAll
     static void setupCassandraConnectionProperties() {
         System.setProperty("spring.data.cassandra.keyspace-name", KEYSPACE_NAME);
         System.setProperty("spring.data.cassandra.contact-points", cassandra.getContainerIpAddress());
@@ -42,7 +42,7 @@ class CassandraSimpleLiveTest {
                 "{'class':'SimpleStrategy','replication_factor':'1'};");
     }
 
-    @Test
+//    @Test
     void givenCassandraContainer_whenSpringContextIsBootstrapped_thenContainerIsRunningWithNoExceptions() {
         System.out.println("before asserting");
         assertThat(cassandra.isRunning()).isTrue();
