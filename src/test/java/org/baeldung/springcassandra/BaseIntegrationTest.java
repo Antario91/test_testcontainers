@@ -45,7 +45,8 @@ public class BaseIntegrationTest {
             .withReuse(true);
 
     @ClassRule
-    public static TestRule ruleChain = RuleChain.outerRule(cassandra);
+    public static TestRule ruleChain = RuleChain.outerRule(tr)
+            .around(cassandra);
 
 
     static class Initializer
